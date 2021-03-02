@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 import re
 from make_markov import MarkovData
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import time
 
 load_dotenv()
@@ -14,7 +15,18 @@ banned_words = [
     "hash", "map", "hashmap", "h4sh", "m4p", "h@sh", "m@p"
 ]
 markov = MarkovData()
+analyzer = SentimentIntensityAnalyzer()
 
+def sentiment_analyzer_scores(text):
+	score = analyzer.polarity_scores(text)
+	lb = score['compound']
+	if lb >= 0.05:
+		return 'CAP'
+	elif (lb > -0.05) and (lb < 0.05):
+		return ':|'
+	else:
+		return 'rather emo'
+    
 @client.event
 async def on_ready():
     print("{0.user} has joined the server Uwu".format(client))
@@ -38,6 +50,10 @@ async def on_message(message):
     if "!pickup" in message.content.lower():
         await message.channel.send(markov.get_pickup())
     
+    if "!sent" in message.content.lower()[0:4]
+        sentiment = sentiment_analyzer_scores(message.content[5::])
+        await message.channel.send(str(sentiment))
+
     if "uwu" in message.content.lower():
         if "r" in message.content.lower():
             await message.channel.send( message.content.replace("r", "w"))
