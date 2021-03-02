@@ -50,7 +50,7 @@ async def on_message(message):
     if "!pickup" in message.content.lower():
         await message.channel.send(markov.get_pickup())
     
-    if "!sent" in message.content.lower()[0:4]
+    if "!sent" in message.content.lower()[0:4]:
         sentiment = sentiment_analyzer_scores(message.content[5::])
         await message.channel.send(str(sentiment))
 
