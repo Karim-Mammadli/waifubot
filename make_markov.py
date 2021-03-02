@@ -1,6 +1,7 @@
 import markovify
 
-
+# TODO: save models in json
+# TODO: add markov for every user
 class MarkovData:
     def __init__(self):
         with open("data/insults.txt", "r", encoding="utf-8") as f:
