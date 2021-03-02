@@ -21,11 +21,11 @@ def sentiment_analyzer_scores(text):
 	score = analyzer.polarity_scores(text)
 	lb = score['compound']
 	if lb >= 0.05:
-		return 'CAP'
+		return 'that sounds like some CAP uwu'
 	elif (lb > -0.05) and (lb < 0.05):
 		return ':|'
 	else:
-		return 'rather emo'
+		return 'rather emo. Are you feeling depressed onii chan?'
     
 @client.event
 async def on_ready():
