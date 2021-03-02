@@ -50,7 +50,7 @@ async def on_message(message):
     if "!pickup" in message.content.lower():
         await message.channel.send(markov.get_pickup())
     
-    if "!sent" in message.content.lower()[0:4]
+    if "!sent" in message.content.lower()[0:5]:
         sentiment = sentiment_analyzer_scores(message.content[5::])
         await message.channel.send(str(sentiment))
 
@@ -72,7 +72,7 @@ async def on_message(message):
     if "hello" in message.content.lower().split() or "hi" in message.content.lower().split():
         await message.channel.send("yahallooo onii chan UwU")
 
-    if "what" in message.content.lower() or "?" in message.content.lower():
+    if "WHAT" in message.content.split():
         await message.channel.send("NANI? 0.0")
 
     if "faang" in message.content.lower():
