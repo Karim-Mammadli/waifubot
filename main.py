@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 import re
 from make_markov import MarkovData
+import time
 
 load_dotenv()
 
