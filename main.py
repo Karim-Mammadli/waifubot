@@ -38,6 +38,25 @@ def printDadJoke(inputStr):
         spacing+=1;
     return("Hi " + inputStr[imIndex + spacing:].strip().capitalize() + ", I'm dad.");
 
+def setDadJokePercent(inputStr):
+    global dad_joke_chance;
+    error_message = "Uh oh, looks you made a fucky wucky."
+    inputStr = inputStr.lower().strip();
+    if(inputStr == "!dadjoke"):
+        return_string = "Dad joke chance is currently at " + str(dad_joke_chance) + "%."
+    else:
+        try:
+            new_percent = int(inputStr[8:])
+            if(new_percent < 0 or new_percent > 100):
+                return_string = error_message + " (Percent must be within [0, 100])";
+            else:
+                dad_joke_chance = new_percent;
+                return_string = "Dad joke chance set to " + str(dad_joke_chance);
+        except:
+            return_string = error_message + " (Use !dadjoke <0-100 integer>)";
+            
+    return(return_string);
+
 @client.event
 async def on_ready():
     print("{0.user} has joined the server Uwu".format(client))
@@ -64,6 +83,9 @@ async def on_message(message):
     if "!sent" in message.content.lower()[0:5]:
         sentiment = sentiment_analyzer_scores(message.content[5::])
         await message.channel.send(str(sentiment))
+	
+    if "!dadjoke" in message.content.lower():
+        await message.channel.send(setDadJokePercent(message.content.lower()))
 
     if "uwu" in message.content.lower():
         if "r" in message.content.lower():
