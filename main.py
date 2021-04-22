@@ -21,12 +21,12 @@ def sentiment_analyzer_scores(text):
 	score = analyzer.polarity_scores(text)
 	lb = score['compound']
 	if lb >= 0.05:
-		return 'that sounds like some CAP uwu'
+		return "that sounds like some CAP uwu"
 	elif (lb > -0.05) and (lb < 0.05):
-		return ':|'
+		return ":|"
 	else:
-		return 'rather emo. Are you feeling depressed onii chan?'
-    
+		return "rather emo. Are you feeling depressed onii chan?"
+
 @client.event
 async def on_ready():
     print("{0.user} has joined the server Uwu".format(client))
@@ -49,7 +49,7 @@ async def on_message(message):
 
     if "!pickup" in message.content.lower():
         await message.channel.send(markov.get_pickup())
-    
+
     if "!sent" in message.content.lower()[0:5]:
         sentiment = sentiment_analyzer_scores(message.content[5::])
         await message.channel.send(str(sentiment))
@@ -63,8 +63,8 @@ async def on_message(message):
     if "owo" in message.content.lower():
         await message.channel.send("OwO")
 
-    if "think" in message.content.lower() or "ok" in message.content.lower():
-        await message.channel.send("Dattebayo! uWu")
+    if "i think so" in message.content.lower():
+        await message.channel.send("Dattebayo! OwO")
 
     if "thank" in message.content.lower():
         await message.channel.send("arigato gozaimasu UwU")
@@ -77,5 +77,8 @@ async def on_message(message):
 
     if "faang" in message.content.lower():
         await message.channel.send("uwu i am a whitttle simpy for faangs uwu")
+
+    if "sex" in message.content.lower():
+    	await message.channel.send("so sexy ( U ω U )")
 
 client.run(os.getenv("TOKEN"))
