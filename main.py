@@ -5,6 +5,7 @@ import re
 from make_markov import MarkovData
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import time
+from random import randint
 
 load_dotenv()
 
