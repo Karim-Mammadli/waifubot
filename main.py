@@ -92,7 +92,7 @@ async def on_message(message):
     	await message.channel.send("so sexy ( U ω U )")
 	
     if ("im" in message.content.lower() or "i'm" in message.content.lower()):
-        if(randint(1, 100) >= dad_joke_chance):
+        if(randint(1, 100) <= dad_joke_chance):
             await message.channel.send(printDadJoke(message.content.lower()))
 
 client.run(os.getenv("TOKEN"))
