@@ -10,6 +10,7 @@ load_dotenv()
 
 client = discord.Client()
 general_channel = 806633861316345867
+dad_joke_chance = 20
 
 banned_words = [
     "hash", "map", "hashmap", "h4sh", "m4p", "h@sh", "m@p"
@@ -26,6 +27,15 @@ def sentiment_analyzer_scores(text):
 		return ":|"
 	else:
 		return "rather emo. Are you feeling depressed onii chan?"
+	
+def printDadJoke(inputStr):
+    spacing = 2;
+    inputStr = inputStr.lower();
+    imIndex = inputStr.find("im");
+    if(imIndex == -1):
+        imIndex = inputStr.find("i'm");
+        spacing+=1;
+    return("Hi " + inputStr[imIndex + spacing:].strip().capitalize() + ", I'm dad.");
 
 @client.event
 async def on_ready():
@@ -80,5 +90,9 @@ async def on_message(message):
 
     if "sex" in message.content.lower():
     	await message.channel.send("so sexy ( U ω U )")
+	
+    if ("im" in message.content.lower() or "i'm" in message.content.lower()):
+        if(randint(1, 100) >= dad_joke_chance):
+            await message.channel.send(printDadJoke(message.content.lower()))
 
 client.run(os.getenv("TOKEN"))
