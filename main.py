@@ -6,6 +6,10 @@ from make_markov import MarkovData
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import time
 from random import randint
+from helper_thread import CSPickupLinesThread
+
+pkp_thread = CSPickupLinesThread()
+pkp_thread.start()
 
 load_dotenv()
 
@@ -73,7 +77,6 @@ async def on_message(message):
             await message.delete()
             await message.channel.send("we don't say those words in here uwu")
             return
-
     if "!insult" in message.content.lower():
         await message.channel.send(markov.get_insult())
 
@@ -83,7 +86,10 @@ async def on_message(message):
     if "!sent" in message.content.lower()[0:5]:
         sentiment = sentiment_analyzer_scores(message.content[5::])
         await message.channel.send(str(sentiment))
-	
+    if message.content.startswith("!cspickup"):
+        await message.channel.send(pkp_thread.getPickupLine())
+
+
     if "!dadjoke" in message.content.lower():
         await message.channel.send(setDadJokePercent(message.content.lower()))
 
