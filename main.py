@@ -120,6 +120,9 @@ async def on_message(message):
     if "sex" in message.content.lower():
     	await message.channel.send("so sexy ( U ω U )")
 	
+    if "cum" in message.content.lower():
+    	await message.channel.send("I AM CUMMMINGGGGGGGG!!!")
+	
     if ("im" in message.content.lower() or "i'm" in message.content.lower()):
         if(randint(1, 100) <= dad_joke_chance):
             await message.channel.send(printDadJoke(message.content.lower()))
